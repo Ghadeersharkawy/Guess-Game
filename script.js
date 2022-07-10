@@ -10,10 +10,16 @@ const modalShow = function () {
     overlay.classList.remove("hidden");
     modal.classList.remove("hidden");
 }
-//close button
 modalButton.forEach((btn) => { btn.addEventListener('click', modalShow) });
+
+//X button click to close modal
+
 const closeModal = function () {
     modal.classList.toggle("hidden");
     overlay.classList.toggle("hidden");
 }
 closeBtn.addEventListener('click', closeModal);
+
+//Overlay click to close modal
+
+overlay.addEventListener('click', closeModal);
