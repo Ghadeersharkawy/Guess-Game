@@ -14,6 +14,7 @@ let highScore = 0;
 const againBtn = document.querySelector('.again');
 //High Score Calculate
 const CalcHighScore = function (score) {
+
     if (score > highScore)
     {
         return highScore = score;
@@ -27,6 +28,7 @@ const CalcHighScore = function (score) {
 const getGussedNumber = function () {
     let guessedNumber = Number(document.querySelector('.guess').value);
     const message = document.querySelector('.message');
+    const number = document.querySelector('.number');
     //empty input
     if (!guessedNumber)
     {
@@ -35,40 +37,27 @@ const getGussedNumber = function () {
     {
         message.textContent = '🎊🎉 Correct Number';
         //display generated numer on screen 
-        document.querySelector('.number').textContent = secretNumber;
+        number.textContent = secretNumber;
         //increase number background width
-        document.querySelector('.number').style.width = '30rem';
+        number.style.width = '30rem';
         //change body color
         document.querySelector('body').style.backgroundColor = '#60b347';
 
         //highScore = score;
-        CalcHighScore(score);
-        document.querySelector('.highscore').textContent = highScore;
+        //CalcHighScore(score);
+        document.querySelector('.highscore').textContent = CalcHighScore(score);
 
-    } else if (guessedNumber > secretNumber)
+    } else if (guessedNumber !== secretNumber)
     {
-        message.textContent = 'Too Heigh';
+        message.textContent = guessedNumber > secretNumber ? '👆 Too Heigh' : '👇 Too Low';
         //score = score - 1;
         score--;
-        if (score <= 0)
+        if (score <= 1)
         {
             message.textContent = '😞 You Lost Try Again';
             document.querySelector('.score').textContent = 0;
         }
         else
-        {
-            document.querySelector('.score').textContent = score;
-        }
-    } else if (guessedNumber < secretNumber)
-    {
-        message.textContent = 'Too Low';
-        // score = score - 1;
-        score--;
-        if (score <= 0)
-        {
-            message.textContent = '😞 You Lost Try Again';
-            document.querySelector('.score').textContent = 0;
-        } else
         {
             document.querySelector('.score').textContent = score;
         }
@@ -85,7 +74,7 @@ const getGussedNumber = function () {
         secretNumber = Math.floor(Math.random() * 20) + 1;
         //console.log(secretNumber);
 
-        document.querySelector('.number').textContent = '?';
+        number.textContent = '?';
         //reset message text
         message.textContent = 'Start guessing...';
         //reset Input Value
@@ -93,7 +82,7 @@ const getGussedNumber = function () {
         //reset body color
         document.querySelector('body').style.backgroundColor = '#222';
         //increase number background width
-        document.querySelector('.number').style.width = '15rem';
+        number.style.width = '15rem';
     }
     againBtn.addEventListener('click', gameReset)
 
