@@ -23,3 +23,15 @@ closeBtn.addEventListener('click', closeModal);
 //Overlay click to close modal
 
 overlay.addEventListener('click', closeModal);
+
+//Esc click to close modal
+
+function escCloseModal(e) {
+    if (e.key === "Escape")
+    {
+
+        modal.classList.toggle("hidden");
+        overlay.classList.toggle("hidden");
+    }
+}
+document.addEventListener('keydown', escCloseModal);
