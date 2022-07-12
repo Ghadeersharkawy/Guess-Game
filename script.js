@@ -30,8 +30,10 @@ const rollDice = function () {
     if (rolledNum == 1)
     {
         currentScore = 0;
-        document.querySelector(`.player.player--${activePlayer}`).classList.remove('player--active');
+        document.querySelector(`#current--${activePlayer}`).textContent = currentScore;
         //switch users
+
+        document.querySelector(`.player.player--${activePlayer}`).classList.remove('player--active');
         activePlayer = activePlayer == 0 ? 1 : 0;
         console.log(document.querySelectorAll(`.player.player--${activePlayer}`));
         document.querySelector(`.player.player--${activePlayer}`).classList.add('player--active');
