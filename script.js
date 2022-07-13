@@ -8,13 +8,24 @@ const holdBtn = document.querySelector('.btn.btn--hold');
 const newBtn = document.querySelector('.btn.btn--new');
 //player
 let activePlayer = 0;
-// const activePlayerCurrentEl = document.querySelector(`#current--${activePlayer}`);
+
 let currentScore = 0;
 let score0 = 0;
 let score1 = 0;
+
 //Set Scores to 0 at start
 score0El.textContent = score0;
 score1El.textContent = score1;
+//check player win
+const checkPlayerWin = function (score0, score1) {
+    if (score0 >= 100)
+    {
+        document.querySelector(`.player.player--${activePlayer}`).classList.add('player--winner');
+    } else if (score1 >= 100)
+    {
+        document.querySelector(`.player.player--${activePlayer}`).classList.add('player--winner');
+    }
+}
 //hide dice image
 diceImg.classList.add('hidden');
 //Switch Player
@@ -53,6 +64,7 @@ rollBtn.addEventListener('click', rollDice);
 const holdScore = function () {
     console.log('hold', currentScore);
     console.log('player', activePlayer);
+
     if (activePlayer == 0)
     {
         score0 += currentScore;
@@ -62,8 +74,12 @@ const holdScore = function () {
         score1 += currentScore;
         score1El.textContent = score1;
     }
-    console.log(score0, score1);
+    checkPlayerWin(score0, score1);
+    document.querySelector(`#current--${activePlayer}`).textContent = 0;
     switchPlayer();
+
+    console.log(score0, score1);
+
 
 }
 holdBtn.addEventListener('click', holdScore);
