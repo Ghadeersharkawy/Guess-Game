@@ -88,3 +88,12 @@ const holdScore = function () {
 
 }
 holdBtn.addEventListener('click', holdScore);
+//Start New Game
+const startNewGame = function () {
+    score0 = score1 = 0;
+    currentScore = 0;
+    activePlayer = 0;
+    score0El.textContent = 0;
+    score1El.textContent = 0;
+}
+newBtn.addEventListener('click', startNewGame)
