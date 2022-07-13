@@ -21,19 +21,24 @@ const checkPlayerWin = function (score0, score1) {
     if (score0 >= 100)
     {
         document.querySelector(`.player.player--${activePlayer}`).classList.add('player--winner');
+        rollBtn.removeEventListener('click', rollDice);
     } else if (score1 >= 100)
     {
         document.querySelector(`.player.player--${activePlayer}`).classList.add('player--winner');
+        rollBtn.removeEventListener('click', rollDice);
     }
 }
 //hide dice image
 diceImg.classList.add('hidden');
 //Switch Player
 const switchPlayer = function () {
+    currentScore = 0;
+    document.querySelector(`#current--${activePlayer}`).textContent = 0;
     document.querySelector(`.player.player--${activePlayer}`).classList.remove('player--active');
     activePlayer = activePlayer == 0 ? 1 : 0;
     console.log(document.querySelectorAll(`.player.player--${activePlayer}`));
     document.querySelector(`.player.player--${activePlayer}`).classList.add('player--active');
+
 }
 // Roll Dice
 const getDiceNumber = function () {
@@ -46,7 +51,7 @@ const rollDice = function () {
     diceImg.src = `dice-${rolledNum}.png`;
     if (rolledNum == 1)
     {
-        currentScore = 0;
+
         document.querySelector(`#current--${activePlayer}`).textContent = currentScore;
         //switch users
         switchPlayer();
